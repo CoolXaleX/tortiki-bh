@@ -3,11 +3,12 @@ package ru.tortiki.entity;
 import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @MongoEntity(collection = "testCollection", database = "testDb")
-public class Post extends PanacheMongoEntity {
+public class Post extends PanacheMongoEntity implements Serializable {
     private String title;
     private String desc;
     private String date;
