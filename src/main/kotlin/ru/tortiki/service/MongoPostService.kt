@@ -17,7 +17,7 @@ class MongoPostService : PostService {
     override fun getPost(id: String): Post = Post.findById(ObjectId(id))
 
     override fun search(filter: Filter): List<Post> {
-        var postQuery: PanacheQuery<Post> = createQuery(filter)
+        val postQuery: PanacheQuery<Post> = createQuery(filter)
         if (filter.count > 0) {
             postQuery.page<Post>(Page.ofSize(filter.count))
             if (filter.page >= 0) postQuery.page<Post>(filter.page, filter.count)
@@ -27,6 +27,6 @@ class MongoPostService : PostService {
 
     private fun createQuery(filter: Filter): PanacheQuery<Post> {
         return if (filter.ids.isEmpty()) Post.findAll()
-        else Post.find<Post>("{ _id : { \$in : ?1 } }", filter.ids.toString())
+        else Post.find<Post>("_id in ?1", filter.ids)
     }
 }
