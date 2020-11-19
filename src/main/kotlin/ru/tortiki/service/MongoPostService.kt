@@ -27,6 +27,6 @@ class MongoPostService : PostService {
 
     private fun createQuery(filter: Filter): PanacheQuery<Post> {
         return if (filter.ids.isEmpty()) Post.findAll()
-        else Post.find<Post>("_id in ?1", filter.ids)
+        else Post.find<Post>("_id in ?1", filter.ids.map { s -> ObjectId(s) })
     }
 }
