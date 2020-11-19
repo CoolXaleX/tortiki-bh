@@ -1,3 +1,3 @@
 package ru.tortiki.entity
 
-data class Filter(var ids: List<String> = emptyList(), var from: Int, var count: Int)
+data class Filter(var page: Int = 0, var count: Int = 0, var ids: List<String> = emptyList())
