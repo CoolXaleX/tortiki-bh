@@ -2,6 +2,7 @@ package ru.tortiki.rest
 
 import org.jboss.logging.Logger
 import ru.tortiki.entity.Filter
+import ru.tortiki.entity.Like
 import ru.tortiki.entity.Post
 import ru.tortiki.service.PostService
 import javax.enterprise.inject.Default
@@ -50,5 +51,14 @@ class PostEndPoint {
     fun getList(filter: Filter): Response {
         log.info("Get list for $filter")
         return Response.ok(postService.search(filter)).build()
+    }
+
+    @POST
+    @Path("/like")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    fun like(like: Like): Response {
+        log.info("Set like $like")
+        return Response.ok(postService.setLike(like)).build()
     }
 }

@@ -4,6 +4,7 @@ import io.quarkus.mongodb.panache.PanacheQuery
 import io.quarkus.panache.common.Page
 import org.bson.types.ObjectId
 import ru.tortiki.entity.Filter
+import ru.tortiki.entity.Like
 import ru.tortiki.entity.Post
 import javax.enterprise.context.ApplicationScoped
 
@@ -23,6 +24,13 @@ class MongoPostService : PostService {
             if (filter.page >= 0) postQuery.page<Post>(filter.page, filter.count)
         }
         return postQuery.list()
+    }
+
+    override fun setLike(like: Like): Boolean {
+        val post = getPost(like.idPost)
+        post.likers.add(like.idUser)
+        post.update()
+        return true
     }
 
     private fun createQuery(filter: Filter): PanacheQuery<Post> {

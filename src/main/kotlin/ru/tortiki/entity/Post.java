@@ -12,7 +12,7 @@ public class Post extends PanacheMongoEntity implements Serializable {
     private String title;
     private String desc;
     private String date;
-    private List<Integer> likers;
+    private List<String> likers;
 
     public Post() {
     }
@@ -23,7 +23,7 @@ public class Post extends PanacheMongoEntity implements Serializable {
         this.date = date;
     }
 
-    public Post(String title, String desc, String date, List<Integer> likers) {
+    public Post(String title, String desc, String date, List<String> likers) {
         this.title = title;
         this.desc = desc;
         this.date = date;
@@ -54,11 +54,11 @@ public class Post extends PanacheMongoEntity implements Serializable {
         this.date = date;
     }
 
-    public List<Integer> getLikers() {
+    public List<String> getLikers() {
         return likers;
     }
 
-    public void setLikers(List<Integer> likers) {
+    public void setLikers(List<String> likers) {
         this.likers = likers;
     }
 
