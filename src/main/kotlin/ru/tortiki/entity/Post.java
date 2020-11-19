@@ -80,7 +80,7 @@ public class Post extends PanacheMongoEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "JavaPost{" +
+        return "Post{" +
                 "title='" + title + '\'' +
                 ", desc='" + desc + '\'' +
                 ", date='" + date + '\'' +
