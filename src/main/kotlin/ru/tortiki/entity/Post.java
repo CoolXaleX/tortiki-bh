@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-@MongoEntity(collection = "testCollection", database = "testDb")
+@MongoEntity(collection = "posts", database = "tortiki")
 public class Post extends PanacheMongoEntity implements Serializable {
     private String title;
     private String desc;

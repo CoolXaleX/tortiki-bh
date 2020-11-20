@@ -4,7 +4,9 @@ import org.jboss.logging.Logger
 import ru.tortiki.entity.Filter
 import ru.tortiki.entity.Like
 import ru.tortiki.entity.Post
+import ru.tortiki.entity.User
 import ru.tortiki.service.PostService
+import ru.tortiki.service.UserService
 import javax.enterprise.inject.Default
 import javax.inject.Inject
 import javax.ws.rs.*
@@ -60,5 +62,31 @@ class PostEndPoint {
     fun like(like: Like): Response {
         log.info("Set like $like")
         return Response.ok(postService.setLike(like)).build()
+    }
+}
+
+@Path("/user")
+class UserEndPoint {
+    private val log: Logger = Logger.getLogger(UserEndPoint::class.java)
+
+    @Inject
+    @field: Default
+    lateinit var userService: UserService
+
+    @POST
+    @Path("/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    fun addUser(user: User): Response {
+        log.info("Add $user")
+        return Response.ok(userService.addUser(user)).build()
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    fun findUserById(@PathParam("id") id: String): Response {
+        log.info("Get $id user info")
+        return Response.ok(userService.getUser(id)).build()
     }
 }
